@@ -3,7 +3,9 @@
 
 * {
 	margin: 0 auto;
+
 }
+
 canvas {
 	background: black;
 	border: outset;
@@ -11,18 +13,20 @@ canvas {
 
 }
 
-
+body {
+	background-color: black;
+}
 
 .wrapper {
-	border: 5px dotted red;
-	width: 80%;
+	width: 65%;
 	text-align: center;
 	background: lightgrey;
 	border: outset;
 
 }
+
 .GB img {
-	width: 99%;
+	width: 100%;
 
 }
 
@@ -32,6 +36,6 @@ canvas {
 	font-size: 20px;
 	letter-spacing: 15px;
 	padding-bottom: 10px;
-	padding-top: 20px;
+	padding-top: 1px;
 
 }

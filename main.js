@@ -5,20 +5,20 @@ var ctx = canvas.getContext("2d");
 var ballRadius = 8;
 var x = canvas.width/2;
 var y = canvas.height-25;
-var dx = 2;
-var dy = -3;
-var stopperHeight = 10;
-var stopperWidth = 100;
+var dx = 3;
+var dy = -4;
+var stopperHeight = 11;
+var stopperWidth = 120;
 var stopper = (canvas.width-stopperWidth/2);
 var rightPressed = false;
 var leftPressed = false;
 var blockRow = 5;
-var blockColumn = 9;
+var blockColumn = 8;
 var blockWidth = 70;
 var blockHeight = 15;
-var blockPadding = 15;
-var blockTop = 55;
-var blockLeft = 30;
+var blockPadding = 10;
+var blockTop = 45;
+var blockLeft = 50;
 var lives = 5;
 var score = 0;
 
@@ -50,3 +50,11 @@ function mouseMoveHandler (e) {
     stopper = relX - stopperWidth/2;
   }
 }
+
+var block = [];
+  for(c = 0; c < blockColumn; c++) {
+    block[c] = [];
+      for(r = 0; r < blockRow; r++) {
+        block[c][r] = { x: 0, y: 0, status: 1 };
+      }
+  }

@@ -30,13 +30,6 @@ console.log("pullStopper");
 
 ////blockpull////
 
-var block = [];
-  for(c = 0; c < blockColumn; c++) {
-    block[c] = [];
-      for(r = 0; r < blockRow; r++) {
-        block[c][r] = { x: 0, y: 0, status: 1 };
-      }
-  }
 
 function pullBlock () {
   for(c = 0; c < blockColumn; c++) {
@@ -56,40 +49,41 @@ function pullBlock () {
   }
 }
 
+console.log("pullBlock");
 
 function wreckBlock() {
   for(c = 0; c < blockColumn; c++) {
     for(r = 0; r < blockRow; r++) {
       var b = block[c][r];
         if(b.status == 1) {
-        if(x > b.x && x < b.x + blockWidth && y > b.y & y <     b.y + blockHeight){
+        if(x > b.x && x < b.x + blockWidth && y > b.y & y < b.y + blockHeight){
         dy = -dy;
         b.status = 0;
         score ++;
         if(score == blockRow * blockColumn) {
-          alert("You win!");
+          alert("YOU WIN!");
           document.location.reload();
-        }
-
-
+              }
           }
         }
       }
     }
   }
 
-function scoreBoard(){
-  ctx.font = "30px Megrim, cursive";
-  ctx.fillStyle = "red";
-  ctx.fillText("BLOCKS : "+ score, 300, 40);
 
+function scoreBoard(){
+  ctx.font = "22px Megrim, cursive";
+  ctx.fillStyle = "red";
+  ctx.fillText("BLOCKS : "+ score, 300, 20);
 }
 
 function trackLives() {
-  ctx.font = "22px Megrim, cursive";
+  ctx.font = "18px Megrim, cursive";
   ctx.fillStyle = "limegreen";
-  ctx.fillText("Remaining Lives: " + lives, canvas.width-250, 25);
+  ctx.fillText("Remaining Lives: " + lives, canvas.width-160, 20);
 }
+
+console.log("trackLives & scoreBoard activated");
 
 
 
@@ -123,7 +117,7 @@ function trackLives() {
     x = canvas.width/2;
     y = canvas.height-30;
     dx = 2;
-    dy = -2;
+    dy = -4;
     stopper = (canvas.width-stopperWidth)/2;
 
     }
