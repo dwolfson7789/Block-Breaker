@@ -1,60 +1,93 @@
 
 
-var canvas = document.getElementById("backgroundCanvas");
+var canvas = document.getElementById("gameHolder");
 var ctx = canvas.getContext("2d");
-var ballRadius = 8;
+var ballRadius = 10;
 var x = canvas.width/2;
-var y = canvas.height-25;
-var dx = 3;
-var dy = -4;
-var stopperHeight = 11;
-var stopperWidth = 120;
+var y = canvas.height-30;
+var dx = 2;
+var dy = -2;
+var stopperHeight = 10;
+var stopperWidth = 75;
 var stopper = (canvas.width-stopperWidth/2);
-var rightPressed = false;
-var leftPressed = false;
-var blockRow = 5;
-var blockColumn = 8;
-var blockWidth = 70;
-var blockHeight = 15;
-var blockPadding = 10;
-var blockTop = 45;
-var blockLeft = 50;
-var lives = 5;
-var score = 0;
+var rightPress = false;
+var leftPress = false;
+
+console.log("gameHolder");
+
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
-document.addEventListener("mousemove", mouseMoveHandler, false);
 
 function keyDownHandler(e) {
   if (e.keyCode == 39) {
-    rightPressed = true;
+    rightPress = true;
   }
   else if (e.keyCode == 37) {
-    leftPressed = true;
+    leftPress = true;
   }
 }
 function keyUpHandler(e) {
   if(e.keyCode == 39){
-    rightPressed = false;
+    rightPress = false;
 
   }
   else if(e.keyCode == 37) {
-    leftPressed = false;
+    leftPress = false;
   }
 }
 
-function mouseMoveHandler (e) {
-  var relX = e.clientX - canvas.offsetLeft;
-  if(relX  > 0 && relX < canvas.width) {
-    stopper = relX - stopperWidth/2;
-  }
+
+
+function ballDrop() {
+    ctx.beginPath();
+    ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+    ctx.fillStyle = "#366";
+    ctx.fill();
+    ctx.closePath();
 }
 
-var block = [];
-  for(c = 0; c < blockColumn; c++) {
-    block[c] = [];
-      for(r = 0; r < blockRow; r++) {
-        block[c][r] = { x: 0, y: 0, status: 1 };
-      }
-  }
+console.log("ballDraw");
+
+function drawStopper (){
+    ctx.beginPath();
+    ctx.rect(saver, canvas.height-saverHeight, saverWidth, saverHeight);
+    ctx.fillStyle = "#003";
+    ctx.fill();
+    ctx.closePath();
+}
+
+console.log("drawStopper");
+
+
+function start() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ballDrop();
+    drawStopper();
+
+    if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+        dx = -dx;
+    }
+    if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
+        dy = -dy;
+    }
+
+    x += dx;
+    y += dy;
+}
+if(rightPress && stopper < canvas.width-stopperWidth) {
+  stopper +=7;
+}
+else if (leftPress && stopper > 0) {
+  stopper -= 7;
+}
+
+console.log("start")
+
+
+
+
+
+
+
+setInterval(start, 10);
