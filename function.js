@@ -72,9 +72,9 @@ function wreckBlock() {
 
 
 function scoreBoard(){
-  ctx.font = "22px Megrim, cursive";
+  ctx.font = "25px Bangers, cursive";
   ctx.fillStyle = "red";
-  ctx.fillText("BLOCKS : "+ score, 300, 20);
+  ctx.fillText("BLOCKS : "+ score, 300, 30);
 }
 
 function trackLives() {
