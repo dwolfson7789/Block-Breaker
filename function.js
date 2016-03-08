@@ -1,4 +1,3 @@
-
 console.log("JS running");
 
 
@@ -11,7 +10,6 @@ function dropBall() {
     ctx.fill();
     ctx.closePath();
 }
-
 
 console.log("ballDrop");
 
@@ -28,7 +26,15 @@ function pullStopper (){
 console.log("pullStopper");
 
 
-////blockpull////
+////block////
+
+var block = [];
+   for(c = 0; c < blockColumn; c++) {
+     block[c] = [];
+       for(r = 0; r < blockRow; r++) {
+         block[c][r] = { x: 0, y: 0, status: 1 };
+       }
+ }
 
 
 function pullBlock () {
@@ -49,7 +55,7 @@ function pullBlock () {
   }
 }
 
-console.log("pullBlock");
+
 
 function wreckBlock() {
   for(c = 0; c < blockColumn; c++) {
@@ -70,6 +76,9 @@ function wreckBlock() {
     }
   }
 
+console.log("block engaged");
+
+
 
 function scoreBoard(){
   ctx.font = "25px Bangers, cursive";
@@ -84,7 +93,6 @@ function trackLives() {
 }
 
 console.log("trackLives & scoreBoard activated");
-
 
 
 ///START FUNCTION////
@@ -113,6 +121,15 @@ console.log("trackLives & scoreBoard activated");
           alert("YOU LOSE!");
           document.location.reload();
   }
+  else {
+    x = canvas.width/2;
+    y = canvas.height-30;
+    dx = 2;
+    dy = -5;
+    stopper = (canvas.width-stopperWidth)/2;
+
+    }
+  }
 }
       if(rightPressed && stopper < canvas.width-stopperWidth) {
         stopper += 6;
@@ -124,7 +141,7 @@ console.log("trackLives & scoreBoard activated");
 
       x += dx;
       y += dy;
-
+requestAnimationFrame(start); ////work cited in issue//
   }
-}
-setInterval(start, 10);
+
+start();
