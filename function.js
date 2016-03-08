@@ -113,15 +113,6 @@ console.log("trackLives & scoreBoard activated");
           alert("YOU LOSE!");
           document.location.reload();
   }
-  else {
-    x = canvas.width/2;
-    y = canvas.height-30;
-    dx = 2;
-    dy = -4;
-    stopper = (canvas.width-stopperWidth)/2;
-
-    }
-  }
 }
       if(rightPressed && stopper < canvas.width-stopperWidth) {
         stopper += 6;
@@ -135,7 +126,5 @@ console.log("trackLives & scoreBoard activated");
       y += dy;
 
   }
-
-
-
+}
 setInterval(start, 10);
