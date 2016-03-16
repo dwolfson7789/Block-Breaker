@@ -3,8 +3,8 @@ var ctx = canvas.getContext("2d");
 var ballRadius = 8;
 var x = canvas.width/2;
 var y = canvas.height-25;
-var dx = 2;
-var dy = -5;
+var dx = 2; //left to right axis controll//
+var dy = -5; //up down axis control//
 var stopper = (canvas.width-stopperWidth/2);
 var stopperHeight = 10;
 var stopperWidth = 110;
@@ -21,12 +21,12 @@ var rightPressed = false;
 var leftPressed = false;
 
 
-
+// keyhandler (<--, ---->, mousemove)//
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 document.addEventListener("mousemove", mouseMoveHandler, false);
 
-
+//assigned right & key//
 function keyDownHandler(e) {
  if (e.keyCode == 39) {
    rightPress = true;
@@ -44,10 +44,10 @@ function keyUpHandler(e) {
    leftPress = false;
   }
 }
-
+//mousemove//
 function mouseMoveHandler (e) {
   var relX = e.clientX - canvas.offsetLeft;
-  if(relX  > 0 && relX < canvas.width) {
+  if(relX  > 0 && relX < canvas.width) { //reflect upon canvas natrual state offsetLeft//
    stopper = relX - stopperWidth/2;
   }
  }

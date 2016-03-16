@@ -1,85 +1,5 @@
 console.log("JS running");
 
-
-////DROPBALL////
-
-function dropBall() {
-    ctx.beginPath();
-    ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-    ctx.fillStyle = "red";
-    ctx.fill();
-    ctx.closePath();
-}
-
-console.log("ballDrop");
-
-
-
-function pullStopper (){
-    ctx.beginPath();
-    ctx.rect(stopper, canvas.height-stopperHeight, stopperWidth, stopperHeight);
-    ctx.fillStyle = "white";
-    ctx.fill();
-    ctx.closePath();
-}
-
-console.log("pullStopper");
-
-
-////block////
-
-var block = [];
-   for(c = 0; c < blockColumn; c++) {
-     block[c] = [];
-       for(r = 0; r < blockRow; r++) {
-         block[c][r] = { x: 0, y: 0, status: 1 };
-       }
- }
-
-
-function pullBlock () {
-  for(c = 0; c < blockColumn; c++) {
-    for(r = 0; r<blockRow; r++) {
-      if(block[c][r].status == 1) {
-      var blockX = (c*(blockWidth + blockPadding)) + blockLeft;
-      var blockY = (r*(blockHeight + blockPadding)) + blockTop;
-      block[c][r].x = blockX;
-      block[c][r].y = blockY;
-      ctx.beginPath();
-      ctx.rect(blockX, blockY, blockWidth, blockHeight);
-      ctx.fillStyle = "white";
-      ctx.fill();
-      ctx.closePath();
-      }
-    }
-  }
-}
-
-
-
-function wreckBlock() {
-  for(c = 0; c < blockColumn; c++) {
-    for(r = 0; r < blockRow; r++) {
-      var b = block[c][r];
-        if(b.status == 1) {
-        if(x > b.x && x < b.x + blockWidth && y > b.y & y < b.y + blockHeight){
-        dy = -dy;
-        b.status = 0;
-        score ++;
-        if(score == blockRow * blockColumn) {
-          alert("YOU WIN!");
-          document.location.reload();
-              }
-          }
-        }
-      }
-    }
-  }
-
-console.log("block engaged");
-
-
-
 function scoreBoard(){
   ctx.font = "25px Bangers, cursive";
   ctx.fillStyle = "red";
@@ -92,17 +12,93 @@ function trackLives() {
   ctx.fillText("Remaining Lives: " + lives, canvas.width-160, 20);
 }
 
-console.log("trackLives & scoreBoard activated");
+
+
+
+////ball responsive in canvas ////
+
+function dropBall() {
+    ctx.beginPath();
+    ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+    ctx.fillStyle = "red";
+    ctx.fill();
+    ctx.closePath();
+}
+
+
+
+//responsive paddle//
+
+function pullStopper (){
+    ctx.beginPath();
+    ctx.rect(stopper, canvas.height-stopperHeight, stopperWidth, stopperHeight);
+    ctx.fillStyle = "white";
+    ctx.fill();
+    ctx.closePath();
+}
+
+
+
+////blocks are being pulled not responsive////
+
+var block = [];
+   for(c = 0; c < blockColumn; c++) { //call to cols//
+     block[c] = []; //call to array//
+       for(r = 0; r < blockRow; r++) { //call to row//
+         block[c][r] = { x: 0, y: 0, status: 1 }; //col + row = 1 indiv block//
+       }
+ }
+
+//blocks are appearing, based ob declared variables in main.js(block & col val)
+function pullBlock () {
+  for(c = 0; c < blockColumn; c++) { //r-row//
+    for(r = 0; r<blockRow; r++) { //c-col//
+      if(block[c][r].status == 1) { //1 by 1//
+      var blockX = (c*(blockWidth + blockPadding)) + blockLeft;
+      var blockY = (r*(blockHeight + blockPadding)) + blockTop;
+      block[c][r].x = blockX;
+      block[c][r].y = blockY;
+      ctx.beginPath();
+      ctx.rect(blockX, blockY, blockWidth, blockHeight); //declare size//
+      ctx.fillStyle = "white";
+      ctx.fill();
+      ctx.closePath();
+      }
+    }
+  }
+}
+
+
+//collision detection//
+function wreckBlock() {
+  for(c = 0; c < blockColumn; c++) {
+    for(r = 0; r < blockRow; r++) {
+      var b = block[c][r];
+        if(b.status == 1) { //calling to single block collision//
+        if(x > b.x && x < b.x + blockWidth && y > b.y & y < b.y + blockHeight){
+        dy = -dy; //the block will disapear//
+        b.status = 0;
+        score ++;
+        if(score == blockRow * blockColumn) { //score reflecting the individual block wrecked//
+          alert("YOU WIN!");
+          document.location.reload();
+              }
+          }
+        }
+      }
+    }
+  }
+
 
 
 ///START FUNCTION////
-
+//call to all/
   function start() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      dropBall();
-      pullStopper();
-      pullBlock();
-      wreckBlock();
+      dropBall(); //ball responsive with in canvas//
+      pullStopper(); //stopper appearing//
+      pullBlock();//blocks appear//
+      wreckBlock();//block collision//
       scoreBoard();
       trackLives();
 
