@@ -40,3 +40,12 @@ body {
 	padding-top: 20px;
 
 }
+	#social img {
+		padding: 10px;
+}
+
+#social img:hover {
+	-moz-box-shadow: 0 0 10px #ccc;
+	-webkit-box-shadow: 0 0 10px #ccc;
+	box-shadow: 0 0 10px #ccc;
+}
