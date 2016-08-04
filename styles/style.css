@@ -18,7 +18,7 @@ body {
 }
 
 .wrapper {
-	width: 48rem;
+	width: 40rem;
 	text-align: center;
 	background: lightgrey;
 	border: outset;
@@ -26,7 +26,7 @@ body {
 }
 
 .GB img {
-	width: 44rem;
+	width: 35rem;
 	height: 22rem;
 
 }
